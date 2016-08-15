@@ -1,0 +1,23 @@
+{
+  "name": "cac",
+  "version": "1.0.0",
+  "description": "cloudatcost.com v1 API node client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davequick/cac.git"
+  },
+  "keywords": [
+    "cloudatcost",
+    "client"
+  ],
+  "author": "dq@dq.gg",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/davequick/cac/issues"
+  },
+  "homepage": "https://github.com/davequick/cac#readme"
+}
