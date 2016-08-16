@@ -1,22 +1,27 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //BUGBUG security problem quick hack
+//var api = new CatC('ydE7y5UQeREGUvygUJY7EJY5a', 'dave@quicks.me');
 
-var CatC = require('node-catc');
+var Client = require('node-rest-client').Client;
+// require('ssl-root-cas/latest')
+//     .inject()
+//     .addFile(__dirname + '/cac_cert');
 
-var api = new CatC('ydE7y5UQeREGUvygUJY7EJY5a', 'dave@quicks.me');
+// direct way
+var client = new Client({connection: {
+  rejectUnauthorized: false //BUGBUG: skipping auth - left as an exercise to the reader if you want to add certs here
+}});
 
-api.listServers(function(err, res) {
-  if(!err) {
-    for(var i in res.data) {
-      console.log(res.data[i]);
-    }
+var args = {
+  path: { action: "listservers" },
+  parameters: { key: "ydE7y5UQeREGUvygUJY7EJY5a", login: "dave@quicks.me" },
+  headers: {
+    "Content-Type": "application/json"
   }
-});
+};
 
-api.listTemplates(function(err, res) {
-  if(!err) {
-    for(var i in res.data) {
-      console.log(res.data[i]);
-    }
-  }
-});
-
+client.get("https://panel.cloudatcost.com/api/v1/${action}.php", args,
+    function (data, response) {
+      // parsed response body as js object
+      console.log(data);
+      // raw response
+      console.log(response);
+    });
